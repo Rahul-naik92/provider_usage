@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:usage_provider/provider/auth_provider.dart';
 import 'package:usage_provider/provider/count_provider.dart';
 import 'package:usage_provider/provider/example_one_provider.dart';
 import 'package:usage_provider/provider/favourite_provider.dart';
 import 'package:usage_provider/provider/theme_changer_provider.dart';
-import 'package:usage_provider/screen/dark_theme.dart';
+import 'package:usage_provider/screen/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,6 +31,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => ThemChangeProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => AuthProvider(), //provider defined here
+        ),
       ],
       child: Builder(builder: (BuildContext context) {
         final themchanger = Provider.of<ThemChangeProvider>(context);
@@ -45,7 +49,7 @@ class MyApp extends StatelessWidget {
               primarySwatch: Colors.purple,
               appBarTheme: const AppBarTheme(backgroundColor: Colors.green),
               iconTheme: const IconThemeData(color: Colors.orange)),
-          home: const DarkTheme(),
+          home: const LoginScreen(), //login screen
         );
       }),
     );
